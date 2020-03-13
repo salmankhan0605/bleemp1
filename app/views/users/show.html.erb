@@ -1,0 +1,35 @@
+<%= button_to 'Home', root_path, method: :get %><br/>
+ <img src ='<%= @user.avatar %>' /><br/>
+ <b><%= @user.name %><br/></b>
+  <b><%= @user.email %><br/></b>
+  Latitude: <b><%= @lat %><br/></b>
+  Longitude: <b><%= @lng %><br/></b>
+  Phone: <b><%= @user.phone %><br/></b>
+ <br/><br/>
+ 
+ <h1>Posts</h1>
+ <ul>
+ <% @posts.each do |post|%>
+ 
+ <li><%= post.body %></li>
+ 
+ <% end %>
+ </ul>
+ 
+ <h1>Nearby Posts</h1>
+ <ul>
+ <% @nearby_users.each do |user| if user.distance > 0.1 %>
+
+ <% user.posts.each do |post| %>
+    <fieldset>
+ <img src='<%= user.avatar %>' /> 
+ <%= link_to user.name, user  %>
+ <li> <%= user.distance.round(2) %> miles </li><br/>
+ <ul>
+   <li><%= post.body %></li>
+   </ul>
+   </fieldset>
+ <% end %>
+ 
+ <% end end %>
+ </ul>

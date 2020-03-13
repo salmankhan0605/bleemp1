@@ -1,0 +1,20 @@
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+
+
+<ul>
+<% @posts.each do |post|   %>
+<fieldset>
+<img src='<%= post.user.avatar %>' /> 
+<%= link_to post.user.name, post.user  %>
+ <li><b> <%= post.body %> </b></li>
+</fieldset>
+
+<% end %>
+
+</ul>
